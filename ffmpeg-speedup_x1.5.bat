@@ -1,0 +1,1 @@
+ffmpeg -i %1 -filter_complex "[0:v]setpts=0.67*PTS[v];[0:a]atempo=1.5[a]" -map "[v]" -map "[a]" output.mp4

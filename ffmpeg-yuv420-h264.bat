@@ -1,0 +1,1 @@
+ffmpeg -f rawvideo -pix_fmt yuv420p -s:v 360x640 -i %1 -c:v libx264 -qp 18 %~n1.mp4

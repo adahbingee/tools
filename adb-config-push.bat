@@ -1,0 +1,1 @@
+adb push ./config.txt /data/local/tmp

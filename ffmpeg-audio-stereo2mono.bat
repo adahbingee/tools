@@ -1,0 +1,1 @@
+ffmpeg -i %1 -ac 1 %~n1_mono.m4a

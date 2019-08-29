@@ -1,0 +1,1 @@
+ffmpeg -i left.mov -i centre.mov -i right.mov -filter_complex "[0:v:0][1:v:0][2:v:0]hstack=inputs=3" -c:v libx264 -qp 18 triple.mp4
