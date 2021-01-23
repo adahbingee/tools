@@ -1,0 +1,1 @@
+ffmpeg -skip_frame nokey -i %1 -vsync 0 %04d.png
