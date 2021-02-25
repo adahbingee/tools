@@ -20,6 +20,7 @@ ouptPath  = sys.argv[2]
 
 # video list
 vidPathList = glob.glob(os.path.join(inptPath, '*.mp4'))
+vidPathList = sorted( vidPathList ) # sort by name
 
 for vidPath in vidPathList:
 
