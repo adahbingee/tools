@@ -40,6 +40,7 @@ for vidPath in vidPathList:
 
     # get total frame number of this video
     fileList = glob.glob(os.path.join(tmpDir, '*.png'))
+    fileList = sorted( fileList ) # sort by name
     # total frame count
     totalFrameCnt = len(fileList)
     # interval count
@@ -49,8 +50,8 @@ for vidPath in vidPathList:
 
     for i in intervalList:
         print(fileList[i])
-        # saving image, format videoName_000000.png
-        savingName = '{}_{:06}.png'.format(fileName, frameCnt)
+        # saving image, format videoName_0000.png
+        savingName = '{}_{:04}.png'.format(fileName, frameCnt)
         savingName = os.path.join(ouptPath, savingName)
         shutil.copyfile(fileList[i], savingName)
         frameCnt += 1
