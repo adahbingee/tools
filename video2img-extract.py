@@ -13,15 +13,15 @@ if len(sys.argv) < 3:
 selectCnt = 10
 
 # input  videos directory
-inptPath = sys.argv[1]
+inptPath  = sys.argv[1]
 
 # output images directory
-ouptPath = sys.argv[2]
+ouptPath  = sys.argv[2]
 
 # video list
-vidNPathList = glob.glob(os.path.join(inptPath, '*.mp4'))
+vidPathList = glob.glob(os.path.join(inptPath, '*.mp4'))
 
-for vidPath in vidNPathList:
+for vidPath in vidPathList:
 
     frameCnt = 0
 
@@ -49,7 +49,7 @@ for vidPath in vidNPathList:
 
     for i in intervalList:
         print(fileList[i])
-        # saving image, format videoName_0000.png
+        # saving image, format videoName_000000.png
         savingName = '{}_{:06}.png'.format(fileName, frameCnt)
         savingName = os.path.join(ouptPath, savingName)
         shutil.copyfile(fileList[i], savingName)
