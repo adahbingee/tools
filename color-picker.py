@@ -1,3 +1,4 @@
+import sys
 import cv2 as cv
 import numpy as np
 from cv2 import *
@@ -19,7 +20,7 @@ imgS          = np.zeros( (1, 1, 3), dtype=np.uint8 )   # normalize displayed im
 homoPoints    = []                                      # normalized [0, 1] points in [y, x] format
 
 def onMouse(event, x, y, flags, param):
-    global img, imgS, homoPoints, WIN_NAME
+    global imgS, homoPoints, WIN_NAME
 
     imgSub = imgS[y-50:y+50, x-50:x+50, :]
     imgSub = resize(imgSub, (imgSub.shape[0]*2, imgSub.shape[1]*2), interpolation = INTER_NEAREST)
@@ -35,9 +36,9 @@ def onMouse(event, x, y, flags, param):
         homoPoints.append([x/winSizeX, y/winSizeY])
         imshow(WIN_NAME, imgS)
 
-        print(rect)
-        print('{},{}'.format(x, y))
-        print(homoPoints)
+        # print(rect)
+        # print('{},{}'.format(x, y))
+        # print(homoPoints)
 
     if event == EVENT_RBUTTONDOWN:
         homoPoints = []
@@ -46,7 +47,8 @@ def onMouse(event, x, y, flags, param):
 
 def main():
     global img, imgS
-    img      = imread('client.png')
+    img      = imread(sys.argv[1])
+    # img      = imread('client.png')
     imgSizeY = img.shape[0]
     imgSizeX = img.shape[1]
 
@@ -63,6 +65,7 @@ def main():
         dstPoints = np.float32([[0, 0], [1, 0], [1, 1], [0, 1]]) * NORM_SIZE
         M         = getPerspectiveTransform(srcPoints, dstPoints)
         imgWarp   = warpPerspective(img, M, (NORM_SIZE, NORM_SIZE))
+        blocks    = []
 
         for y in range(BLK_NUM_Y):
             iy0 = BLK_OFFSET_Y + y*(BLK_SIZE_Y + BLK_MARGIN_Y)
@@ -78,8 +81,9 @@ def main():
                 putText(imgWarp, 'B:{}'.format(int(avgR[0])), (ix0, iy0+00+BLK_OFFSET_Y), FONT_HERSHEY_PLAIN, 0.8, (0, 255, 0), 1, LINE_AA)
                 putText(imgWarp, 'G:{}'.format(int(avgR[1])), (ix0, iy0+12+BLK_OFFSET_Y), FONT_HERSHEY_PLAIN, 0.8, (0, 255, 0), 1, LINE_AA)
                 putText(imgWarp, 'R:{}'.format(int(avgR[2])), (ix0, iy0+24+BLK_OFFSET_Y), FONT_HERSHEY_PLAIN, 0.8, (0, 255, 0), 1, LINE_AA)
-                print(avg)
-
+                blocks.append(avgR)
+        for blk in blocks:
+            print('RGB: {}, {}, {}'.format(blk[2], blk[1], blk[0]))
         imshow('imgWarp', imgWarp)
         waitKey()
     else:
