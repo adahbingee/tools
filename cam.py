@@ -6,8 +6,8 @@ if not cap.isOpened():
     exit()
 
 # ret = cap.set(cv.CAP_PROP_AUTO_EXPOSURE, 0)
-ret = cap.set(cv.CAP_PROP_EXPOSURE, 40)
-print(ret)
+# ret = cap.set(cv.CAP_PROP_EXPOSURE, 40)
+# print(ret)
 
 while(True):
     ret, frame = cap.read()
