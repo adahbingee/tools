@@ -1,13 +1,16 @@
 import cv2 as cv
 
-cap = cv.VideoCapture(0)
+cap = cv.VideoCapture(2)
 if not cap.isOpened():
     print('Cannot open camera')
     exit()
 
 # ret = cap.set(cv.CAP_PROP_AUTO_EXPOSURE, 0)
 # ret = cap.set(cv.CAP_PROP_EXPOSURE, 40)
-# print(ret)
+ret =  cap.set(cv.CAP_PROP_FRAME_WIDTH, 1920)
+ret &= cap.set(cv.CAP_PROP_FRAME_HEIGHT, 1080)
+# ret &= cap.set(cv.CAP_PROP_FPS, 25)
+print(ret)
 
 while(True):
     ret, frame = cap.read()
