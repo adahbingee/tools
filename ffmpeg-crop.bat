@@ -1,0 +1,1 @@
+::ffmpeg -i in.mp4 -vf "crop=out_w:out_h:x:y" out.mp4
