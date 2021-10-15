@@ -11,8 +11,6 @@ webcam0.set(cv.CAP_PROP_FRAME_HEIGHT, sizeY)
 webcam1.set(cv.CAP_PROP_FRAME_WIDTH,  sizeX)
 webcam1.set(cv.CAP_PROP_FRAME_HEIGHT, sizeY)
 
-isImgSizeSet = False
-
 while True:
     ret0, frame0 = webcam0.read()
     ret1, frame1 = webcam1.read()
